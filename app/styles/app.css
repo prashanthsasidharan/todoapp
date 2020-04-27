@@ -1,0 +1,26 @@
+.center{
+  text-align:center;
+  width:100%;
+}
+
+.checkbox{
+
+  display: inline;
+
+}
+li{
+    list-style-type: none;
+
+}
+.dash{
+  text-decoration: line-through;
+
+}
+.underline{
+  text-decoration: underline;
+
+}
+.sameline{
+  display: inline;
+  width:20px;
+}

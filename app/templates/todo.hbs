@@ -1,0 +1,53 @@
+
+<div class="center">
+  <form>
+    {{input value=task}}
+    <button type="submit" {{action 'additem' task 0}}>submit</button>
+  </form>
+
+
+  <h3>LIST OF ITEMS</h3>
+  <button type="submit" {{action shifttab_fun "all"}}>all</button>
+  <button type="submit" {{action shifttab_fun "completed"}}>completed</button>
+  <button type="submit" {{action shifttab_fun "active"}}>active</button>
+  <button type="submit" {{action clear }}>clear completed task</button>
+
+
+  <ul>
+  {{#if shifttab_all}}
+          {{#each model as |obj|}}
+            <li>
+            <input type='checkbox'   {{action toggle obj}}>
+              <p class="sameline {{if obj.iscompleted  "dash"}}">
+              {{obj.name}}</p>
+            </li>
+          {{/each}}
+
+    {{else if shifttab_completed}}
+          {{#each model as |obj|}}
+            {{#if obj.iscompleted}}
+                completed
+            <li>
+            <input type='checkbox'   {{action toggle obj}}>
+              <p class="underline sameline">{{obj.name}}</p>
+            </li>
+            {{/if}}
+        {{/each}}
+
+
+  {{else if shifttab_active}}
+        {{#each model as |obj|}}
+          {{#unless obj.iscompleted}}
+          notcompleted
+          <li>
+          <input class="checkbox" type='checkbox'    {{action toggle obj}}>
+            <p class="underline sameline">
+            {{obj.name}}</p>
+          </li>
+          {{/unless}}
+        {{/each}}
+
+    {{/if}}
+  </ul>
+  no of tasks pending:{{taskcount}}
+</div>
